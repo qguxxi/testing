@@ -1,6 +1,6 @@
 # 📡 Báo Cáo Kiểm Thử API — Open-Meteo Weather API
 
-> **Người kiểm thử:** Giang Thành An
+> **Người kiểm thử:** Hoàng Đức Mạnh
 > **Ngày kiểm thử:** 17/06/2026
 > **Endpoint:** `https://api.open-meteo.com/v1/forecast`
 
@@ -69,6 +69,8 @@ GET https://api.open-meteo.com/v1/forecast
 | HTTP Status | `200 OK` |
 | Thời gian phản hồi | ~55ms |
 | Trạng thái | ✅ THÀNH CÔNG |
+
+![Kịch bản 1 - Response 200 OK](./images/test-1.png)
 
 <details>
 <summary>Xem phản hồi mẫu</summary>
@@ -168,6 +170,8 @@ GET https://api.open-meteo.com/v1/forecast
 | Thời gian phản hồi | ~45ms |
 | Trạng thái | ✅ THÀNH CÔNG |
 
+![Kịch bản 3 - 400 Bad Request](./images/test-2.png)
+
 ```json
 {
   "error": true,
@@ -199,6 +203,8 @@ GET https://api.open-meteo.com/v1/forecast
 **Vấn đề phát hiện:** API trả về 168 giá trị thời gian bắt đầu từ tháng 6/2026 và quay ngược về năm 1920, không khớp với khoảng thời gian yêu cầu (2020-01-01 đến 2020-01-07).
 
 > ⚠️ **Ghi chú:** Đây có thể là lỗi khi xử lý tham số `start_date`/`end_date`, hoặc cần sử dụng endpoint riêng cho dữ liệu lịch sử.
+
+![Kịch bản 4 - Dữ liệu trả về không đúng](./images/test-3.png)
 
 ---
 
@@ -341,5 +347,4 @@ curl "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hour
 
 ---
 
-> 📅 **Ngày tạo báo cáo:** 17/06/2026 | **Người tạo:** Giang Thành An
 > 🔄 **Đánh giá tiếp theo:** Sau khi sửa lỗi `API-001` và `API-002`
