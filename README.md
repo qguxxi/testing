@@ -1,35 +1,37 @@
-# 📡 Báo Cáo Kiểm Thử API — Open-Meteo Weather API
+# Báo Cáo Kiểm Thử API — Open-Meteo Weather API
 
-> **Người kiểm thử:** Hoàng Đức Mạnh
-> **Ngày kiểm thử:** 17/06/2026
-> **Endpoint:** `https://api.open-meteo.com/v1/forecast`
-
----
-
-## 📋 Mục Lục
-
-- [Mục Tiêu Kiểm Thử](#-mục-tiêu-kiểm-thử)
-- [Môi Trường Kiểm Thử](#-môi-trường-kiểm-thử)
-- [Kết Quả Tổng Quan](#-kết-quả-tổng-quan)
-- [Kịch Bản Kiểm Thử](#-kịch-bản-kiểm-thử)
-- [Phát Hiện Lỗi](#-phát-hiện-lỗi)
-- [Nhận Xét & Đề Xuất](#-nhận-xét--đề-xuất)
-- [Mã Trạng Thái HTTP](#-mã-trạng-thái-http-tham-khảo)
-- [Bộ Sưu Tập Postman](#-bộ-sưu-tập-postman)
-- [Phụ Lục](#-phụ-lục)
+**Người kiểm thử:** Hoàng Đức Mạnh 
+**Ngày kiểm thử:** 17/06/2026  
+**Endpoint:** `https://api.open-meteo.com/v1/forecast`
 
 ---
 
-## 🎯 Mục Tiêu Kiểm Thử
+## Mục Lục
 
-- Xác thực chức năng và độ tin cậy của Open-Meteo Weather API
-- Kiểm thử API với các tham số khác nhau
-- Xác minh định dạng dữ liệu và độ chính xác của nội dung
-- Đánh giá hiệu suất API và khả năng xử lý lỗi
+- [Mục Tiêu Kiểm Thử](#mục-tiêu-kiểm-thử)
+- [Môi Trường Kiểm Thử](#môi-trường-kiểm-thử)
+- [Kết Quả Tổng Quan](#kết-quả-tổng-quan)
+- [Kịch Bản Kiểm Thử](#kịch-bản-kiểm-thử)
+- [Phát Hiện Lỗi](#phát-hiện-lỗi)
+- [Nhận Xét và Đề Xuất](#nhận-xét-và-đề-xuất)
+- [Mã Trạng Thái HTTP Tham Khảo](#mã-trạng-thái-http-tham-khảo)
+- [Bộ Sưu Tập Postman](#bộ-sưu-tập-postman)
+- [Phụ Lục](#phụ-lục)
 
 ---
 
-## 🛠 Môi Trường Kiểm Thử
+## Mục Tiêu Kiểm Thử
+
+Báo cáo này trình bày kết quả kiểm thử Open-Meteo Weather API nhằm các mục tiêu sau:
+
+- Xác thực chức năng và độ tin cậy của API
+- Kiểm thử API với các tham số hợp lệ và không hợp lệ
+- Xác minh định dạng dữ liệu và độ chính xác của nội dung trả về
+- Đánh giá hiệu suất phản hồi và khả năng xử lý lỗi
+
+---
+
+## Môi Trường Kiểm Thử
 
 | Thông Tin | Chi Tiết |
 |-----------|----------|
@@ -40,22 +42,22 @@
 
 ---
 
-## 📊 Kết Quả Tổng Quan
+## Kết Quả Tổng Quan
 
 | Chỉ Số | Giá Trị |
 |--------|---------|
-| Tổng số kịch bản | 4 |
-| ✅ Thành công | 3 |
-| ❌ Thất bại | 1 |
+| Tổng số kịch bản kiểm thử | 4 |
+| Số kịch bản thành công | 3 |
+| Số kịch bản thất bại | 1 |
 | Tỷ lệ thành công | **75%** |
 
 ---
 
-## 🧪 Kịch Bản Kiểm Thử
+## Kịch Bản Kiểm Thử
 
-### Kịch Bản 1 — Yêu Cầu Cơ Bản ✅
+### Kịch Bản 1 — Yêu Cầu Cơ Bản
 
-**Mục đích:** Xác minh API trả về dữ liệu thời tiết với tham số tối thiểu
+**Mục đích:** Xác minh API trả về dữ liệu thời tiết với bộ tham số tối thiểu bắt buộc.
 
 ```
 GET https://api.open-meteo.com/v1/forecast
@@ -67,10 +69,10 @@ GET https://api.open-meteo.com/v1/forecast
 | Thông Tin | Chi Tiết |
 |-----------|----------|
 | HTTP Status | `200 OK` |
-| Thời gian phản hồi | ~55ms |
-| Trạng thái | ✅ THÀNH CÔNG |
+| Thời gian phản hồi | 55ms |
+| Kết quả | THÀNH CÔNG |
 
-![Kịch bản 1 - Response 200 OK](./images/test-1.png)
+![Kịch bản 1 - Response 200 OK](test-1.png)
 
 <details>
 <summary>Xem phản hồi mẫu</summary>
@@ -97,11 +99,16 @@ GET https://api.open-meteo.com/v1/forecast
 
 </details>
 
+**Dữ liệu đã xác minh:**
+- Vĩ độ và kinh độ khớp với tham số yêu cầu
+- Dữ liệu nhiệt độ theo giờ được trả về đầy đủ
+- Định dạng JSON hợp lệ và có cấu trúc nhất quán
+
 ---
 
-### Kịch Bản 2 — Tham Số Mở Rộng ✅
+### Kịch Bản 2 — Tham Số Mở Rộng
 
-**Mục đích:** Kiểm thử API với nhiều tham số và múi giờ khác nhau
+**Mục đích:** Kiểm thử API với nhiều biến số thời tiết đồng thời và tùy chỉnh múi giờ.
 
 ```
 GET https://api.open-meteo.com/v1/forecast
@@ -115,13 +122,13 @@ GET https://api.open-meteo.com/v1/forecast
 | Thông Tin | Chi Tiết |
 |-----------|----------|
 | HTTP Status | `200 OK` |
-| Thời gian phản hồi | ~117ms |
-| Trạng thái | ✅ THÀNH CÔNG |
+| Thời gian phản hồi | 117ms |
+| Kết quả | THÀNH CÔNG |
 
 **Dữ liệu đã xác minh:**
-- Nhiều biến số thời tiết được trả về đầy đủ
+- Tất cả biến số thời tiết yêu cầu được trả về đầy đủ
 - Múi giờ `Asia/Singapore` (+08) được áp dụng chính xác
-- Bao gồm dữ liệu ngày hôm trước
+- Dữ liệu ngày hôm trước được bao gồm theo tham số `past_days=1`
 
 <details>
 <summary>Xem phản hồi mẫu</summary>
@@ -153,9 +160,9 @@ GET https://api.open-meteo.com/v1/forecast
 
 ---
 
-### Kịch Bản 3 — Tham Số Không Hợp Lệ ✅
+### Kịch Bản 3 — Tham Số Không Hợp Lệ
 
-**Mục đích:** Xác minh khả năng xử lý lỗi khi truyền vĩ độ không hợp lệ
+**Mục đích:** Xác minh cơ chế xử lý lỗi khi truyền giá trị vĩ độ nằm ngoài phạm vi cho phép.
 
 ```
 GET https://api.open-meteo.com/v1/forecast
@@ -167,10 +174,10 @@ GET https://api.open-meteo.com/v1/forecast
 | Thông Tin | Chi Tiết |
 |-----------|----------|
 | HTTP Status | `400 Bad Request` |
-| Thời gian phản hồi | ~45ms |
-| Trạng thái | ✅ THÀNH CÔNG |
+| Thời gian phản hồi | 45ms |
+| Kết quả | THÀNH CÔNG |
 
-![Kịch bản 3 - 400 Bad Request](./images/test-2.png)
+![Kịch bản 3 - 400 Bad Request](test-2.png)
 
 ```json
 {
@@ -180,11 +187,13 @@ GET https://api.open-meteo.com/v1/forecast
 }
 ```
 
+**Nhận xét:** API trả về thông báo lỗi rõ ràng, có mô tả cụ thể nguyên nhân, đáp ứng tốt yêu cầu về khả năng xử lý đầu vào không hợp lệ.
+
 ---
 
-### Kịch Bản 4 — Dữ Liệu Lịch Sử ❌
+### Kịch Bản 4 — Truy Xuất Dữ Liệu Lịch Sử
 
-**Mục đích:** Kiểm tra khả năng truy xuất dữ liệu quá khứ
+**Mục đích:** Kiểm tra khả năng truy xuất dữ liệu thời tiết trong khoảng thời gian quá khứ cụ thể.
 
 ```
 GET https://api.open-meteo.com/v1/forecast
@@ -198,75 +207,83 @@ GET https://api.open-meteo.com/v1/forecast
 | Thông Tin | Chi Tiết |
 |-----------|----------|
 | HTTP Status | `200 OK` |
-| Trạng thái | ❌ KHÔNG THÀNH CÔNG |
+| Kết quả mong đợi | Dữ liệu 7 ngày từ 2020-01-01 đến 2020-01-07 |
+| Kết quả thực tế | Dữ liệu không khớp khoảng thời gian yêu cầu |
+| Kết quả | THẤT BẠI |
 
-**Vấn đề phát hiện:** API trả về 168 giá trị thời gian bắt đầu từ tháng 6/2026 và quay ngược về năm 1920, không khớp với khoảng thời gian yêu cầu (2020-01-01 đến 2020-01-07).
+![Kịch bản 4 - Dữ liệu trả về không đúng](test-3.png)
 
-> ⚠️ **Ghi chú:** Đây có thể là lỗi khi xử lý tham số `start_date`/`end_date`, hoặc cần sử dụng endpoint riêng cho dữ liệu lịch sử.
+**Vấn đề phát hiện:** API phản hồi mã `200 OK` nhưng trả về 168 giá trị thời gian không thuộc khoảng từ `2020-01-01` đến `2020-01-07`. Thay vào đó, dữ liệu trải dài từ năm 1920 đến 2026, không phù hợp với yêu cầu.
 
-![Kịch bản 4 - Dữ liệu trả về không đúng](./images/test-3.png)
+**Ghi chú:** Lỗi này có thể xuất phát từ việc endpoint `/v1/forecast` không hỗ trợ truy vấn lịch sử. Dữ liệu lịch sử có thể cần sử dụng endpoint riêng biệt là `/v1/archive`.
 
 ---
 
-## 🐛 Phát Hiện Lỗi
+## Phát Hiện Lỗi
 
-### `API-001` — Dữ Liệu Lịch Sử Không Chính Xác
+### API-001 — Dữ Liệu Lịch Sử Không Chính Xác
 
-| Thuộc tính | Chi tiết |
+| Thuộc Tính | Chi Tiết |
 |------------|----------|
-| **Mức độ** | 🔴 Cao |
-| **Tham số liên quan** | `start_date`, `end_date` |
+| Mã lỗi | API-001 |
+| Mức độ ảnh hưởng | Cao |
+| Tham số liên quan | `start_date`, `end_date` |
 
-**Mô tả:** Khi truyền `start_date=2020-01-01` và `end_date=2020-01-07`, API trả về dữ liệu từ khoảng 1920–2026 thay vì 7 ngày được yêu cầu.
+**Mô tả:** Khi truyền `start_date=2020-01-01` và `end_date=2020-01-07` lên endpoint `/v1/forecast`, API trả về dữ liệu không thuộc khoảng thời gian yêu cầu. Response bao gồm 168 bản ghi kéo dài từ năm 1920 đến 2026 thay vì 168 giờ của 7 ngày được chỉ định.
 
-**Đề xuất:** Kiểm tra lại logic xử lý tham số thời gian. Có thể cần thêm `timezone` hoặc sử dụng endpoint `/v1/archive` dành riêng cho dữ liệu lịch sử.
+**Đề xuất khắc phục:** Xác minh lại tài liệu API để xác định endpoint phù hợp cho truy vấn lịch sử. Khả năng cao cần chuyển sang sử dụng `/v1/archive`. Ngoài ra, cần bổ sung tham số `timezone` để đảm bảo xử lý thời gian chính xác.
 
 ---
 
-### `API-002` — Định Dạng Thời Gian Không Chuẩn
+### API-002 — Định Dạng Timestamp Không Hợp Lệ
 
-| Thuộc tính | Chi tiết |
+| Thuộc Tính | Chi Tiết |
 |------------|----------|
-| **Mức độ** | 🟡 Trung bình |
+| Mã lỗi | API-002 |
+| Mức độ ảnh hưởng | Trung bình |
 
-**Mô tả:** Một số trường hợp API trả về thời gian không hợp lệ như `2026-06-17T99:00` hoặc `2026-06-18:00`, gây khó khăn khi parse dữ liệu.
+**Mô tả:** Trong một số trường hợp, API trả về timestamp không đúng chuẩn ISO 8601, ví dụ `2026-06-17T99:00` hoặc `2026-06-18:00`. Các giá trị này gây lỗi khi parse dữ liệu ở phía client.
 
-**Đề xuất:** Chuẩn hóa toàn bộ timestamp đầu ra theo chuẩn ISO 8601.
-
----
-
-## 💡 Nhận Xét & Đề Xuất
-
-### ✅ Điểm Mạnh
-
-- **Hiệu suất tốt:** Thời gian phản hồi dưới 120ms
-- **Thông báo lỗi rõ ràng:** Cấu trúc lỗi được định dạng tốt, dễ debug
-- **Tham số linh hoạt:** Hỗ trợ nhiều tổ hợp biến số thời tiết
-- **Hỗ trợ múi giờ:** Chuyển đổi chính xác theo yêu cầu
-- **Định dạng JSON sạch:** Cấu trúc phản hồi nhất quán
-
-### 📝 Đề Xuất Cải Thiện
-
-- **Rate Limiting:** Bổ sung response headers giới hạn tốc độ để tránh lạm dụng
-- **Tài liệu:** Cập nhật hướng dẫn sử dụng `start_date`/`end_date` rõ ràng hơn
-- **Xác thực đầu vào:** Tăng cường validate tham số trước khi xử lý
-- **Dữ liệu lịch sử:** Sửa lỗi `API-001` hoặc hướng dẫn người dùng dùng endpoint phù hợp
+**Đề xuất khắc phục:** Chuẩn hóa toàn bộ giá trị timestamp đầu ra theo định dạng ISO 8601 (`YYYY-MM-DDTHH:MM`). Bổ sung unit test phía server để phát hiện timestamp không hợp lệ trước khi trả về response.
 
 ---
 
-## 📘 Mã Trạng Thái HTTP Tham Khảo
+## Nhận Xét và Đề Xuất
 
-| Mã | Mô Tả | Cách Xử Lý |
-|----|--------|------------|
+### Điểm Mạnh
+
+| Tiêu Chí | Đánh Giá |
+|----------|----------|
+| Hiệu suất | Thời gian phản hồi trung bình dưới 120ms, đáp ứng tốt cho môi trường production |
+| Xử lý lỗi | Thông báo lỗi rõ ràng, có trường `reason` mô tả cụ thể nguyên nhân |
+| Tính linh hoạt | Hỗ trợ nhiều tổ hợp biến số thời tiết trong một request |
+| Múi giờ | Chuyển đổi múi giờ chính xác theo tham số `timezone` |
+| Cấu trúc dữ liệu | Phản hồi JSON nhất quán, dễ tích hợp |
+
+### Đề Xuất Cải Thiện
+
+| Hạng Mục | Nội Dung |
+|----------|----------|
+| Rate Limiting | Bổ sung response headers (`X-RateLimit-Limit`, `X-RateLimit-Remaining`) để client có thể tự điều chỉnh tần suất gọi API |
+| Tài liệu | Cập nhật rõ ràng cách sử dụng `start_date`/`end_date` và endpoint phù hợp cho từng trường hợp |
+| Xác thực đầu vào | Tăng cường validate tham số, trả về lỗi `400` ngay khi phát hiện tham số không hợp lệ thay vì xử lý sai |
+| Dữ liệu lịch sử | Sửa lỗi `API-001` hoặc bổ sung hướng dẫn chuyển hướng đến endpoint `/v1/archive` trong response lỗi |
+
+---
+
+## Mã Trạng Thái HTTP Tham Khảo
+
+| Mã | Mô Tả | Cách Xử Lý Khuyến Nghị |
+|----|--------|------------------------|
 | `200` | Thành công | Parse và sử dụng dữ liệu |
-| `400` | Yêu cầu không hợp lệ | Kiểm tra lại giá trị tham số |
-| `404` | Không tìm thấy | Xác minh URL endpoint |
-| `429` | Quá nhiều yêu cầu | Triển khai cơ chế retry với backoff |
-| `500` | Lỗi máy chủ nội bộ | Liên hệ nhà cung cấp API |
+| `400` | Yêu cầu không hợp lệ | Kiểm tra lại giá trị tham số trước khi gửi lại |
+| `404` | Không tìm thấy endpoint | Xác minh lại URL và phiên bản API |
+| `429` | Vượt quá giới hạn tốc độ | Triển khai cơ chế retry với exponential backoff |
+| `500` | Lỗi máy chủ nội bộ | Ghi log và liên hệ nhà cung cấp API |
 
 ---
 
-## 📦 Bộ Sưu Tập Postman
+## Bộ Sưu Tập Postman
 
 ### Cấu Trúc Collection
 
@@ -330,7 +347,7 @@ pm.test("Dữ liệu nhiệt độ là mảng số", function () {
 
 ---
 
-## 📎 Phụ Lục
+## Phụ Lục
 
 ### Lệnh cURL Mẫu
 
@@ -341,10 +358,12 @@ curl "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hour
 # Yêu cầu dự báo với nhiều tham số
 curl "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,relativehumidity_2m,windspeed_10m&timezone=Asia/Singapore&past_days=1"
 
-# Yêu cầu dữ liệu lịch sử (⚠️ cần kiểm tra lại)
+# Yêu cầu dữ liệu lịch sử — cần xem xét lại endpoint
 curl "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m&start_date=2020-01-01&end_date=2020-01-07"
 ```
 
 ---
 
-> 🔄 **Đánh giá tiếp theo:** Sau khi sửa lỗi `API-001` và `API-002`
+**Ngày tạo báo cáo:** 17/06/2026  
+**Người tạo:** Giang Thành An  
+**Đánh giá tiếp theo:** Sau khi xác nhận trạng thái sửa lỗi `API-001` và `API-002`
